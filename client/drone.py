@@ -1,7 +1,7 @@
 import drone_class
 import random
 import manageDB
-import requests
+
 
 
 def Data():
