@@ -4,7 +4,7 @@ def SendData():
 
     #url_server = "http://10.30.134.12:8011/drones" --> Andrea
 
-    url_server = "http://10.30.134.27:8011/drones"
+    url_server = "http://10.30.134.27:8013/drones"
 
     json_drone_data = "json_data.json"
 
