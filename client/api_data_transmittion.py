@@ -2,7 +2,10 @@ import requests
 
 def SendData():
 
-    url_server = "http://10.30.134.12:8011/drones" #da modificare
+    #url_server = "http://10.30.134.12:8011/drones" --> Andrea
+
+    url_server = "http://10.30.134.27:8011/drones"
+
     json_drone_data = "json_data.json"
 
     req = requests.post(url_server, data = json_drone_data)

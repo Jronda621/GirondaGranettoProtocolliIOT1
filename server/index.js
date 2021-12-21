@@ -9,7 +9,7 @@ server.get('/drones', function(req, res, next) {
 });
 
 server.get('/drones/:id', function(req, res, next) {
-    res.send('Current values for drone ' + req.params['id'] + ': [TODO]');
+    res.send('Current values for drone ' + req.params['id'] + '[TODO]');
     return next();
 });
 
