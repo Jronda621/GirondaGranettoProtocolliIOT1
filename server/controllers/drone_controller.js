@@ -32,7 +32,7 @@ const readData = (req, res) => {
 };
 
 const readDataByID = (req, res) => {
-    User.findById()
+    User.findById(req.params["id"])
         .then((data) => {
             res.status(200).json(data);
             console.log("Current values for drone " + req.params["id"] + ": [TODO]")

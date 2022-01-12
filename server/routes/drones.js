@@ -9,7 +9,7 @@ const {
 const router = express.Router();
 
 router
-  .post('/drones/:id', createData)
+  .post('/drones', createData)
   .get('/drones', readData)
   .get('/drones/:id', readDataByID)
 

@@ -5,11 +5,17 @@ import os
 import requests
 
 msg_received = {}
+API_URL = "http://localhost:9000/drones"
 
 #ogni volta che riceviamo un messaggio
 def on_message(client, userdata, message):
     msg_received = json.loads(message.payload.decode("utf-8"))
-    print("Messaggio ricevuto: ", json.loads(message.payload.decode("utf-8")))
+    print(msg_received)
+
+    r = requests.post(url = API_URL, data ="", json=msg_received)
+    pastebin_url = r.text 
+    print(pastebin_url)   
+    #print("Messaggio ricevuto: ", json.loads(message.payload.decode("utf-8")))
     #print(msg_received)
 
 #broker 
@@ -26,19 +32,17 @@ client.connect(mqttBroker)
 
 #topic loop --> rimane in ascolto ogni 
 
-client.loop_start()
+client.loop_forever()
 
 #scelta del topic a cui iscriversi
 client.subscribe("NOME/ID")
-
+print("Effettuo richiesta API")
 #ricezione messaggio
 client.on_message = on_message
-
-print("Effettuo richiesta API")
-#response = requests.post("localhost:9000/drones/"+msg_received.ID)
+#print("Client on message: " + on_message)
 
 
-time.sleep(1)
+time.sleep(5)  # DA VERIFICARE PERCHè CICLA UNA SOLA VOLTA
 
 client.loop_stop()
 

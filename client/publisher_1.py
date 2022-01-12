@@ -65,7 +65,7 @@ def Dati():
 
             client.publish("NOME/ID", payload=json.dumps(send_msg))
 
-            print(f"nome: {publisher_name}, id: {id}, velocita: {velocita}, posizione: {posizione}")
+            print(f"NOME: {publisher_name}, ID: {id}, VELOCITA: {velocita}, POSIZIONE: {posizione}")
 
             time.sleep(1)
 
