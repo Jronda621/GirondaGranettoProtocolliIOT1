@@ -9,11 +9,11 @@ import os
 #drone class
 class Drone():
 
-    def __init__(self,nome,id,velocita,distanza):
+    def __init__(self,nome,id,velocita,posizione):
         self.nome = nome
         self.id = id
         self.velocita = velocita
-        self.distanza = distanza
+        self.posizione = posizione
 
 
 
@@ -21,7 +21,7 @@ class Drone():
 
 #broker 
 
-mqttBroker = "mqtt.eclipseprojects.io"
+mqttBroker = "test.mosquitto.org"
 #mqttBroker = "192.168.1.116:1883"
 
 
@@ -49,7 +49,7 @@ def Dati():
             #client.publish("NOME/ID/VELOCITA", velocita)
             
             #sensore di distanza
-            distanza = random.randrange(0,1000)
+            posizione = random.randrange(0,1000)
             #client.publish("NOME/ID/DISTANZA", distanza)
             
             #newData = Drone(publisher_name,id,velocita,distanza)
@@ -60,12 +60,12 @@ def Dati():
                 "NOME":publisher_name,
                 "ID":id,
                 "VELOCITA":velocita,
-                "DISTANZA":distanza
+                "POSIZIONE":posizione
             }
 
             client.publish("NOME/ID", payload=json.dumps(send_msg))
 
-            print(f"nome: {publisher_name}, id: {id}, velocita: {velocita}, distanza: {distanza}")
+            print(f"nome: {publisher_name}, id: {id}, velocita: {velocita}, posizione: {posizione}")
 
             time.sleep(1)
 

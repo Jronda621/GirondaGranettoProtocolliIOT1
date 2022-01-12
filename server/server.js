@@ -5,6 +5,7 @@ const app = express();
 
 require('dotenv').config();
 require("./db/mongodb.js")();
+
 app.use(cors());
 app.use(express.json());
 app.set('view engine', 'html');
