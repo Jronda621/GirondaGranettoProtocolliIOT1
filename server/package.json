@@ -1,17 +1,22 @@
 {
-  "name": "server",
+  "name": "server-template",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Express.js template",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "dev": "node server.js",
+    "serve": "nodemon server.js",
+    "format": "prettier server.js **/*.js --write"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^6.1.2",
-    "mqtt": "^4.2.8",
-    "restify": "^6.4.0"
+    "cors": "^2.8.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.3",
+    "mongoose": "^6.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3",
+    "prettier": "^2.0.5"
   }
 }
