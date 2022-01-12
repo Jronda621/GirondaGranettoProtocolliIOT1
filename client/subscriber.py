@@ -32,19 +32,25 @@ client.connect(mqttBroker)
 
 #topic loop --> rimane in ascolto ogni 
 
-client.loop_forever()
+
+client.loop_start() 
+
+print("entro nel loop")
+
 
 #scelta del topic a cui iscriversi
-client.subscribe("NOME/ID")
-print("Effettuo richiesta API")
+
+client.subscribe("PROGETTO_DRONE/NOME/ID")
+
 #ricezione messaggio
 client.on_message = on_message
 #print("Client on message: " + on_message)
 
 
-time.sleep(5)  # DA VERIFICARE PERCHè CICLA UNA SOLA VOLTA
+time.sleep(30)  # DA VERIFICARE PERCHè CICLA UNA SOLA VOLTA
 
 client.loop_stop()
+
 
 
 

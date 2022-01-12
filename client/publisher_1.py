@@ -63,11 +63,11 @@ def Dati():
                 "POSIZIONE":posizione
             }
 
-            client.publish("NOME/ID", payload=json.dumps(send_msg))
+            client.publish("PROGETTO_DRONE/NOME/ID", payload=json.dumps(send_msg))
 
             print(f"NOME: {publisher_name}, ID: {id}, VELOCITA: {velocita}, POSIZIONE: {posizione}")
 
-            time.sleep(1)
+            time.sleep(5)
 
 if __name__ == "__main__":
     Dati()
