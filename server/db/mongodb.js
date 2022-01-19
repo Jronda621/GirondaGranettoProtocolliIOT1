@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const init = () => {
     mongoose
-        .connect(process.env.DB_URL+"_MQTT", {
+        .connect("mongodb://localhost:27017/AMQP_MQTT", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })

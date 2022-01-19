@@ -1,4 +1,4 @@
-import paho.mqtt.client as mqtt
+
 import time
 import random 
 import json
@@ -17,45 +17,22 @@ class Drone():
         self.posizione = posizione
 
 
-
-
-
-#broker 
-
-mqttBroker = "test.mosquitto.org"
-#mqttBroker = "192.168.1.116:1883"
-
-
-#publisher
-
 publisher_name="ladrone"
-client = mqtt.Client(publisher_name)
+CONNECTION_STRING = ""
 
-client.connect(mqttBroker)
+
+
 
 #dati randomici
 
 def Dati():
 
     while True:
-            #nome
-            #client.publish("NOME", publisher_name) 
-
-            #id
             id = 69420
-            #client.publish("NOME/ID", id)
 
-            #sensore velocità
             velocita = random.randrange(0,30)
-            #client.publish("NOME/ID/VELOCITA", velocita)
-            
-            #sensore di distanza
-            posizione = random.randrange(0,1000)
-            #client.publish("NOME/ID/DISTANZA", distanza)
-            
-            #newData = Drone(publisher_name,id,velocita,distanza)
 
-            #store(newData)
+            posizione = random.randrange(0,1000)
 
             send_msg = {
                 "NOME":publisher_name,
@@ -65,20 +42,23 @@ def Dati():
             }
 
             #client.publish("PROGETTO_DRONE/NOME/ID", payload=json.dumps(send_msg))
-            url = os.environ.get('CLOUDAMQP_URL', 'amqps://henytxme:CUG5r-L3oA9DnqE_THJZHVNeoOAsgk27@roedeer.rmq.cloudamqp.com/henytxme')
+            url = os.environ.get('CLOUDAMQP_URL', CONNECTION_STRING)
             params = pika.URLParameters(url)
             connection = pika.BlockingConnection(params)
             channel = connection.channel() # start a channel
-            channel.queue_declare(queue='hello') # Declare a queue
+            channel.queue_declare(queue='queue1') # Declare a queue
             channel.basic_publish(exchange='',
-                                routing_key='hello',
+                                routing_key='queue1',
                                 body=str(json.dumps(send_msg)))
 
             print(" [x] Sent data")
             connection.close()
             print(f"NOME: {publisher_name}, ID: {id}, VELOCITA: {velocita}, POSIZIONE: {posizione}")
 
-            time.sleep(5)
+            time.sleep(0.5)
 
 if __name__ == "__main__":
-    Dati()
+    if CONNECTION_STRING == "": 
+        print("Inserire i dati di connessione su CONNECTION_STRING")
+    else:
+        Dati()
