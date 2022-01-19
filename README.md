@@ -1,8 +1,8 @@
 Si è pensato alla struttura di un'istanza drone, con le seguenti proprietà:
-*id
-*nome
-*velocità
-*posizione
+- id
+- nome
+- velocità
+- posizione
 
 Partendo da un'applizazione Main, dove vengono generati i dati relativi al drone [parte comune], si è proseguito con la creazione di un publisher che si occupa della trasmissione dei precedenti dati e di un subscriber che si occupa della ricezione.
 
