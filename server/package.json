@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "serve": "nodemon server.js",
-    "format": "prettier server.js **/*.js --write"
+    "format": "prettier server.js **/*.js --write",
+    "start": "node server.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -18,5 +19,6 @@
   "devDependencies": {
     "nodemon": "^1.18.3",
     "prettier": "^2.0.5"
-  }
+  },
+  "author": ""
 }

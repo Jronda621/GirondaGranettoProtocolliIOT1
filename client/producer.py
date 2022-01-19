@@ -3,6 +3,7 @@ import time
 import random 
 import json
 import os
+import pika
 
 
 
@@ -63,8 +64,18 @@ def Dati():
                 "POSIZIONE":posizione
             }
 
-            client.publish("PROGETTO_DRONE/NOME/ID", payload=json.dumps(send_msg))
+            #client.publish("PROGETTO_DRONE/NOME/ID", payload=json.dumps(send_msg))
+            url = os.environ.get('CLOUDAMQP_URL', 'amqps://henytxme:CUG5r-L3oA9DnqE_THJZHVNeoOAsgk27@roedeer.rmq.cloudamqp.com/henytxme')
+            params = pika.URLParameters(url)
+            connection = pika.BlockingConnection(params)
+            channel = connection.channel() # start a channel
+            channel.queue_declare(queue='hello') # Declare a queue
+            channel.basic_publish(exchange='',
+                                routing_key='hello',
+                                body=str(json.dumps(send_msg)))
 
+            print(" [x] Sent data")
+            connection.close()
             print(f"NOME: {publisher_name}, ID: {id}, VELOCITA: {velocita}, POSIZIONE: {posizione}")
 
             time.sleep(5)
