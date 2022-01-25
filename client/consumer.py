@@ -5,7 +5,6 @@ import json
 import requests
 import pika, os
 
-msg_received = {}
 API_URL = "http://localhost:9000/drones"
 CONNECTION_STRING = ""
 if CONNECTION_STRING == "": 
