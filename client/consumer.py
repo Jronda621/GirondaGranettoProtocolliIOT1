@@ -7,7 +7,7 @@ import pika, os
 
 msg_received = {}
 API_URL = "http://localhost:9000/drones"
-CONNECTION_STRING = "amqps://henytxme:G-XZi88qh_bz0-tCsRGxS7h5IS7GSg3t@roedeer.rmq.cloudamqp.com/henytxme"
+CONNECTION_STRING = ""
 if CONNECTION_STRING == "": 
   print("Inserire i dati di connessione su CONNECTION_STRING")
 else:

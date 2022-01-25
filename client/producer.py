@@ -18,7 +18,7 @@ class Drone():
 
 
 publisher_name="ladrone"
-CONNECTION_STRING = "amqps://henytxme:G-XZi88qh_bz0-tCsRGxS7h5IS7GSg3t@roedeer.rmq.cloudamqp.com/henytxme"
+CONNECTION_STRING = ""
 
 
 
