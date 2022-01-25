@@ -7,7 +7,7 @@ import pika, os
 
 msg_received = {}
 API_URL = "http://localhost:9000/drones"
-CONNECTION_STRING = ""
+CONNECTION_STRING = "amqps://henytxme:G-XZi88qh_bz0-tCsRGxS7h5IS7GSg3t@roedeer.rmq.cloudamqp.com/henytxme"
 if CONNECTION_STRING == "": 
   print("Inserire i dati di connessione su CONNECTION_STRING")
 else:
@@ -17,12 +17,14 @@ else:
   params = pika.URLParameters(url)
   connection = pika.BlockingConnection(params)
   channel = connection.channel() # start a channel
-  channel.queue_declare(queue='hello') # Declare a queue
+  channel.queue_declare(queue='queue1') # Declare a queue
   def callback(ch, method, properties, body):
     print(" [x] Received " + str(body))
     msg = json.loads(body)
-    r = requests.post(url = API_URL, data ="", json=msg)
-    print("Post on Mongo")
+    try:
+      r = requests.post(url = API_URL, data ="", json=msg)
+    except:
+      print("Impossibile connettersi al database Mongo, assicurarsi sia funzionante la RestApi")
 
   channel.basic_consume('queue1',
                         callback,
